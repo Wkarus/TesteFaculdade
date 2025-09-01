@@ -1,0 +1,23 @@
+Estrutura do Projeto
+src/
+├── controllers/     # Lógica de negócio
+├── models/         # Modelos de dados
+├── routes/         # Rotas da API
+└── database/       # Configuração do banco
+Banco de Dados
+O projeto utiliza SQLite com as seguintes tabelas:
+
+Usuários
+Beneficiários
+Doadores
+Doações
+API Endpoints
+POST /api/auth/login - Autenticação
+GET /api/users - Listar usuários
+POST /api/beneficiarios - Cadastrar beneficiário
+GET /api/doadores - Listar doadores
+Desenvolvido por
+[Seu Nome] - FECAP - 2º Semestre
+
+Licença
+Este projeto está sob a licença MIT.
