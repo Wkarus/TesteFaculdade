@@ -1,0 +1,12 @@
+Por que cada item está no .gitignore:
+🔒 Segurança:
+.env → Contém senhas, JWT_SECRET, etc.
+*.db → Banco de dados com dados sensíveis
+📦 Dependências:
+node_modules/ → Muito pesado, se reinstala com npm install
+🗑️ Arquivos temporários:
+*.log → Logs são gerados automaticamente
+.DS_Store → Arquivo do macOS que ninguém precisa
+⚙️ Configurações pessoais:
+.vscode/ → Configurações do seu editor
+.idea/ → Configurações do IntelliJ/WebStorm
