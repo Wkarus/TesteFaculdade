@@ -5,7 +5,8 @@
   "scripts": {
     "start": "node src/app.js",
     "dev": "nodemon src/app.js",
-    "test": "node src/database/database.js"
+    "test": "node src/database/database.js",
+    "vercel-build": "echo 'Build completed'"
   },
   "keywords": [
     "ong",
