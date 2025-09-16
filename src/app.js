@@ -79,9 +79,15 @@ app.use((req, res) => {
     res.status(404).json({ error: 'Rota não encontrada' });
 });
 
-// Iniciar servidor
-app.listen(PORT, () => {
-    console.log(`🚀 Servidor na porta ${PORT}`);
-});
+
+// Para desenvolvimento local
+if (process.env.NODE_ENV !== 'production') {
+    app.listen(PORT, () => {
+        console.log(`Servidor rodando na porta ${PORT}`);
+    });
+}
+
+
+// Para Vercel (serverless)
 
 module.exports = app;
