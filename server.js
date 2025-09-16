@@ -18,7 +18,7 @@ const sistema = new SistemaService();
 // rota principal
 app.get('/', (req, res) => {
   res.json({
-    message: '🎉 API ONG funcionando!',
+    message: 'API ONG funcionando! PORRAAAAAAAAAAAAAAAAAAAAA',
     endpoints: [
       'GET / - Esta página',
       'POST /api/processar-doacao - Processar doação',
