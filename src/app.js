@@ -75,8 +75,10 @@ app.get('/api/doacoes', (req, res) => {
 
 // Rota GET para notícias
 // Busca todas as notícias cadastradas pela ONG
+// Endpoint para listar todas as notícias da ONG
 app.get('/api/noticias', (req, res) => {
-    db.all("SELECT * FROM Noticias", (err, noticias) => {
+    // Usar os nomes das colunas do SEU banco
+    db.all("SELECT * FROM Noticias ORDER BY data_noticia DESC", (err, noticias) => {
         if (err) {
             res.status(500).json({ error: err.message });
         } else {

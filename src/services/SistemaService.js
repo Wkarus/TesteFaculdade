@@ -79,15 +79,14 @@ class SistemaService {
     
     // ADICIONA ESTE MÉTODO AQUI:
     // metodo para listar todas as noticias da ONG
-    async listarNoticias() {
-        try {
-            // ORDER BY = ordena por data mais recente primeiro
-            // DESC = decrescente (mais novo primeiro)
-            return await db.allAsync('SELECT * FROM Noticias ORDER BY data_noticia DESC');
-        } catch (error) {
-            throw new Error(`Erro ao listar noticias: ${error.message}`);
-        }
+async listarNoticias() {
+    try {
+        // Usar os nomes corretos das colunas do SEU banco
+        return await db.allAsync('SELECT * FROM Noticias ORDER BY data_noticia DESC');
+    } catch (error) {
+        throw new Error(`Erro ao listar noticias: ${error.message}`);
     }
+}
     
     // relatorio geral do sistema - integra todas as funcionalidades
     async gerarRelatorioGeral() {
