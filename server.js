@@ -30,9 +30,12 @@ app.get('/', (req, res) => {
 });
 
 // rotas usando a classe principal
+// Rota POST para processar doações através da classe principal do sistema
+// Recebe dados da doação via body vimos isso hj dia 9/16
 app.post('/api/processar-doacao', async (req, res) => {
   try {
     const resultado = await sistema.processarDoacao(req.body);
+    //RETORNA MENSAGEM DE SUCESSO
     res.json({
       status: 'sucesso',
       message: 'Doação processada com sucesso! 🎉',
@@ -42,7 +45,7 @@ app.post('/api/processar-doacao', async (req, res) => {
     res.status(500).json({ status: 'erro', message: error.message });
   }
 });
-
+// Rota para listar todas os usuarios cadastrados na ONG
 app.get('/api/usuarios', async (req, res) => {
   try {
     const usuarios = await sistema.listarUsuarios();
@@ -51,7 +54,7 @@ app.get('/api/usuarios', async (req, res) => {
     res.status(500).json({ status: 'erro', message: error.message });
   }
 });
-
+// Rota para listar todas as campanhas da ONG
 app.get('/api/campanhas', async (req, res) => {
   try {
     const campanhas = await sistema.listarCampanhas();
@@ -61,6 +64,17 @@ app.get('/api/campanhas', async (req, res) => {
   }
 });
 
+// Rota para listar todas as notícias da ONG
+app.get('/api/noticias', async (req, res) => {
+  try {
+    const noticias = await sistema.listarNoticias();
+    res.json({ status: 'sucesso', data: noticias });
+  } catch (error) {
+    res.status(500).json({ status: 'erro', message: error.message });
+  }
+});
+
+// Rota para listar as doacoes da ONG
 app.get('/api/doacoes', async (req, res) => {
   try {
     const doacoes = await sistema.listarDoacoes();

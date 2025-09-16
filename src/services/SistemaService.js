@@ -12,7 +12,7 @@ class SistemaService {
             console.log('processando doacao...');
             
             // desestruturacao = pegar so os campos que preciso do objeto dados
-            const { nome_doacao, tipo_doacao, cd_cliente, cd_campanha } = dados;
+            const { nome_doacao, tipo_doacao, cd_cliente, cd_campanha,cd_noticias } = dados;
             
             // INSERT = inserir nova doacao no banco SQLite
             // runAsync = executa comando SQL e retorna info sobre o que foi inserido
@@ -77,6 +77,18 @@ class SistemaService {
         }
     }
     
+    // ADICIONA ESTE MÉTODO AQUI:
+    // metodo para listar todas as noticias da ONG
+    async listarNoticias() {
+        try {
+            // ORDER BY = ordena por data mais recente primeiro
+            // DESC = decrescente (mais novo primeiro)
+            return await db.allAsync('SELECT * FROM Noticias ORDER BY data_noticia DESC');
+        } catch (error) {
+            throw new Error(`Erro ao listar noticias: ${error.message}`);
+        }
+    }
+    
     // relatorio geral do sistema - integra todas as funcionalidades
     async gerarRelatorioGeral() {
         try {
@@ -84,18 +96,21 @@ class SistemaService {
             const usuarios = await this.listarUsuarios();     // this = se refere a esta classe
             const campanhas = await this.listarCampanhas();   // await = espera terminar antes de continuar
             const doacoes = await this.listarDoacoes();
+            const noticias = await this.listarNoticias();     // ADICIONA ESTA LINHA
             
-            // retorna estatisticas + dados completos
+            // retorna estatisticas + dados 
             return {
                 relatorio: {
                     total_usuarios: usuarios.length,    // .length = quantidade de itens no array
                     total_campanhas: campanhas.length,
-                    total_doacoes: doacoes.length
+                    total_doacoes: doacoes.length,
+                    total_noticias: noticias.length     // ADICIONA ESTA LINHA
                 },
                 dados: {
                     usuarios,    // shorthand = mesmo que usuarios: usuarios
                     campanhas,
-                    doacoes
+                    doacoes,
+                    noticias     // ADICIONA ESTA LINHA
                 },
                 gerado_em: new Date().toISOString() // timestamp de quando foi gerado
             };
